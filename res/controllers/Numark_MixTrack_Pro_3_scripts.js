@@ -1,6 +1,8 @@
 // Mixtrack Pro 3 Script
-// Based on scripts for Pro 1
+// 08/17/2015 - v 0.1 by Martin Hauge <martinhauge@hotmail.com>
 
+// Based on the included scripts for Pro 1.
+//  Credits for the Pro 1:
 // Based on Numark Mixtrack Mapping Script Functions
 // 1/11/2010 - v0.1 - Matteo <matteo@magm3.com>
 //
@@ -11,10 +13,9 @@
 //	Each slide/knob needs to be moved on Mixxx startup to match levels with the Mixxx UI
 //
 // 05/26/2012 to 06/27/2012 - Changed by Darío José Freije <dario2004@gmail.com>
-//
-//	Almost all work like expected. Resume and Particularities:
-//
-// ************* Script now is Only for 1.11.0 and above *************
+
+
+//TODO: How much of this applies? adjust the rest.
 //
 //	Delete + Effect: Brake Effect (maintain pressed).
 //			 Flanger Delay (2nd knob of effect section): Adjust the speed of Brake.
@@ -38,7 +39,6 @@
 //		 LED Blink at each Beat of the grid.
 //
 //	Sync:	If the other deck is stopped, only sync tempo (not fase).
-//		LED Blink at Clip Gain (Peak indicator).
 //
 // 	Pitch: 	Up, Up; Down, Down. Pitch slide are inverted, to match with the screen (otherwise is very confusing).
 //		Soft-takeover to prevent sudden wide parameter changes when the on-screen control diverges from a hardware control.
@@ -54,7 +54,6 @@
 // 	In Play mode, with Scratch ON: 		Scratch at touch and, in Backwards Stop Scratch when the wheel stop moving for 20ms -> BACKSPIN EFFECT!!!!.
 //						In Fordward Stop Scratch when the touch is released > Play Inmediatly (without breaks for well mix).
 //						Border of the wheels: Pitch Bend.
-//
 
 
 function NumarkMixTrackPro3() {}
@@ -65,31 +64,13 @@ NumarkMixTrackPro3.init = function(id) {	// called when the MIDI device is opene
 	NumarkMixTrackPro3.directoryMode = false;
 	NumarkMixTrackPro3.scratchMode = [false, false];
 	NumarkMixTrackPro3.manualLoop = [true, true];
-	//NumarkMixTrackPro3.deleteKey = [false, false];
 	NumarkMixTrackPro3.shiftKey = [false, false];
 	NumarkMixTrackPro3.isKeyLocked = [0, 0];
 	NumarkMixTrackPro3.touch = [false, false];
 	NumarkMixTrackPro3.scratchTimer = [-1, -1];
 
-//NumarkMixTrackPro3.leds = [
-		//// Common
-		//{ "directory": 0x73, "file": 0x72 },
-		//// Deck 1
-		//{ "rate": 0x70, "scratchMode": 0x48, "manualLoop": 0x61,
-		//"loop_start_position": 0x53, "loop_end_position": 0x54, "reloop_exit": 0x55,
-		//"deleteKey" : 0x59, "hotCue1" : 0x5a,"hotCue2" : 0x5b,"hotCue3" :  0x5c,
-		//"stutter" : 0x4a, "Cue" : 0x33, "sync" : 0x40
-		//},
-		//// Deck 2
-		//{ "rate": 0x71, "scratchMode": 0x50, "manualLoop": 0x62,
-		//"loop_start_position": 0x56, "loop_end_position": 0x57, "reloop_exit": 0x58,
-		//"deleteKey" : 0x5d, "hotCue1" : 0x5e, "hotCue2" : 0x5f, "hotCue3" :  0x60,
-		//"stutter" : 0x4c, "Cue" : 0x3c, "sync" : 0x47
-		//}
-	//];
-
-NumarkMixTrackPro3.ledCategories = { "master": 0, "channel1": 1, "channe2": 2, "meters": 3};
-NumarkMixTrackPro3.leds = [
+    NumarkMixTrackPro3.ledCategories = { "master": 0, "channel1": 1, "channe2": 2, "meters": 3};
+    NumarkMixTrackPro3.leds = [
         // Master: all are first byte 0x90
         { "headphones1": 0x0e, "headphones2": 0x0f, "all": 0x75},
 		// Deck 1: first byte 0x91
@@ -120,15 +101,7 @@ NumarkMixTrackPro3.leds = [
 		this.state = state;
 	}
 
-	//for (i=0x30; i<=0x73; i++) midi.sendShortMsg(0x90, i, 0x00); 	// Turn off all the lights
     midi.sendShortMsg(0x90, NumarkMixTrackPro3.leds[0]["all"], 0x00) // Turn off all the lights
-
-	//NumarkMixTrackPro3.hotCue = { // not used for Pro 3
-			////Deck 1
-			//0x5a:"1", 0x5b:"2", 0x5c:"3",
-			////Deck 2
-			//0x5e: "1", 0x5f:"2", 0x60:"3"
-			//};
 
 	//Add event listeners
 	for (var i=1; i<3; i++){
@@ -138,23 +111,17 @@ NumarkMixTrackPro3.leds = [
 		NumarkMixTrackPro3.setLoopMode(i, false);
 	}
 
-	//NumarkMixTrackPro3.setLED(NumarkMixTrackPro3.leds[0]["file"], true); // not used for Pro 3
-
-
 // Enable soft-takeover for Pitch slider
-
 	engine.softTakeover("[Channel1]", "rate", true);
 	engine.softTakeover("[Channel2]", "rate", true);
-
 
 // Clipping LED -- uses top light of meter
     engine.connectControl("[Master]","PeakIndicator","NumarkMixTrackPro3.meter");
     engine.connectControl("[Channel1]","PeakIndicator","NumarkMixTrackPro3.meter");
     engine.connectControl("[Channel2]","PeakIndicator","NumarkMixTrackPro3.meter");
-	//engine.connectControl("[Channel1]","PeakIndicator","NumarkMixTrackPro3.Channel1Clip");
-	//engine.connectControl("[Channel2]","PeakIndicator","NumarkMixTrackPro3.Channel2Clip");
 
-// Stutter beat light // not used for Pro 3
+// Stutter beat light
+// Flash Stutter LEDs on the beat, flash Cue LEDs as well if within 30s of end of track //TODO: adjust for pro 3
 	//engine.connectControl("[Channel1]","beat_active","NumarkMixTrackPro3.Stutter1Beat");
 	//engine.connectControl("[Channel2]","beat_active","NumarkMixTrackPro3.Stutter2Beat");
 
@@ -162,16 +129,6 @@ NumarkMixTrackPro3.leds = [
     engine.connectControl("[Master]","VuMeter","NumarkMixTrackPro3.meters");
     engine.connectControl("[Channel1]","VuMeter","NumarkMixTrackPro3.meters");
     engine.connectControl("[Channel2]","VuMeter","NumarkMixTrackPro3.meters");
-}
-
-NumarkMixTrackPro3.Channel1Clip = function (value) {
-	NumarkMixTrackPro3.clipLED(value,NumarkMixTrackPro3.leds[1]["sync"]);
-
-}
-
-NumarkMixTrackPro3.Channel2Clip = function (value) {
-	NumarkMixTrackPro3.clipLED(value,NumarkMixTrackPro3.leds[2]["sync"]);
-
 }
 
 NumarkMixTrackPro3.Stutter1Beat = function (value) {
@@ -201,12 +158,6 @@ NumarkMixTrackPro3.Stutter2Beat = function (value) {
 
 }
 
-NumarkMixTrackPro3.clipLED = function (value, note) {
-
-	if (value>0) NumarkMixTrackPro3.flashLED(note, 1);
-
-}
-
 NumarkMixTrackPro3.shutdown = function(id) {	// called when the MIDI device is closed
 
 	// First Remove event listeners
@@ -217,13 +168,7 @@ NumarkMixTrackPro3.shutdown = function(id) {	// called when the MIDI device is c
 		NumarkMixTrackPro3.setLoopMode(i, false);
 	}
 
-	//var lowestLED = 0x30;
-	//var highestLED = 0x73;
-	//for (var i=lowestLED; i<=highestLED; i++) {
-		//NumarkMixTrackPro3.setLED(i, false);	// Turn off all the lights
-	//}
-    midi.sendShortMsg(0x90, NumarkMixTrackPro3.leds[0]["all"], 0x00);
-
+    midi.sendShortMsg(0x90, NumarkMixTrackPro3.leds[0]["all"], 0x00); // Turn all lights off
 }
 
 NumarkMixTrackPro3.samplesPerBeat = function(group) {
@@ -246,8 +191,7 @@ NumarkMixTrackPro3.groupToDeck = function(group) {
 
 }
 
-// category needs to be 0x90, 0x91, 0x92 or 0xb0 as appropriate,
-// should be enumerated somehow, to also fit with led enum
+// Category is as in ledCategories hash, see init()
 NumarkMixTrackPro3.setLED = function(category, led, value) {
     var status = 0x00;
     if(category == 0)
@@ -262,6 +206,7 @@ NumarkMixTrackPro3.setLED = function(category, led, value) {
 	midi.sendShortMsg(status, led, value);
 }
 
+//TODO: do we need/use flashLED & doFlash?
 NumarkMixTrackPro3.flashLED = function (category, led, veces){
 	var ndx = Math.random();
 	var func = "NumarkMixTrackPro3.doFlash(" + ndx + ", " + veces + ")";
@@ -304,26 +249,26 @@ NumarkMixTrackPro3.selectKnob = function(channel, control, value, status, group)
 	}
 }
 
-// Unnecessary: Mixxx already stops us loading in a playing channel,
-// I prefer not having the pitch reset
+// Load track only if deck is not playing, and reset pitch to zero.
+// Mixxx already stops us loading to a playing track, if set in preferences;
+// if you do not want pitch reset then use built-in load function rather than this
 NumarkMixTrackPro3.LoadTrack = function(channel, control, value, status, group) {
-
-	// Load the selected track in the corresponding deck only if the track is paused
 
 	if(value && engine.getValue(group, "play") != 1)
 	{
 		engine.setValue(group, "LoadSelectedTrack", 1);
 
-		// cargar el tema con el pitch en 0
-        // (I don't want this, commented out) - wollollo
-		//engine.softTakeover(group, "rate", false);
-		//engine.setValue(group, "rate", 0);
-		//engine.softTakeover(group, "rate", true);
+		// Set pitch to zero
+		engine.softTakeover(group, "rate", false);
+		engine.setValue(group, "rate", 0);
+		engine.softTakeover(group, "rate", true);
 	}
 	else engine.setValue(group, "LoadSelectedTrack", 0);
 
 }
 
+//TODO: not needed now that effects are done different,
+//see if mapping could be recycled
 NumarkMixTrackPro3.flanger = function(channel, control, value, status, group) {
 
 // 	if (!value) return;
@@ -368,10 +313,7 @@ NumarkMixTrackPro3.flanger = function(channel, control, value, status, group) {
 
 }
 
-
 NumarkMixTrackPro3.cuebutton = function(channel, control, value, status, group) {
-
-
 	// Don't set Cue accidentaly at the end of the song
 	if (engine.getValue(group, "playposition") <= 0.97) {
 			engine.setValue(group, "cue_default", value ? 1 : 0);
@@ -416,7 +358,7 @@ NumarkMixTrackPro3.beatsync = function(channel, control, value, status, group) {
 		}
 }
 
-
+//TODO: probably remove, just seems to make the play button play/pause, which it does anyway.
 NumarkMixTrackPro3.playbutton = function(channel, control, value, status, group) {
 
 	if (!value) return;
@@ -431,7 +373,8 @@ NumarkMixTrackPro3.playbutton = function(channel, control, value, status, group)
 
 }
 
-
+//TODO: understand these. How much reflects design differences of 1 vs 3?
+//Is there anything we need in here?
 NumarkMixTrackPro3.loopIn = function(channel, control, value, status, group) {
 	var deck = NumarkMixTrackPro3.groupToDeck(group);
 
@@ -607,6 +550,7 @@ NumarkMixTrackPro3.playFromCue = function(channel, control, value, status, group
 
 }
 
+//TODO: remove, wizard mapped this fine
 NumarkMixTrackPro3.pitch = function(channel, control, value, status, group) {
 	var deck = NumarkMixTrackPro3.groupToDeck(group);
 
@@ -755,8 +699,6 @@ NumarkMixTrackPro3.toggleDeleteKey = function(channel, control, value, status, g
 	NumarkMixTrackPro3.setLED(NumarkMixTrackPro3.leds[deck]["deleteKey"], NumarkMixTrackPro3.deleteKey[deck-1]);
 }
 
-// Own code entirely from here
-
 // filterCutoff: do lp for low values, hp for high.
 // Assumes Unit[deck]slot2 is a filter with lp q hp as params
 NumarkMixTrackPro3.filterCutoff = function(channel, control, value, status, group){
@@ -778,8 +720,6 @@ NumarkMixTrackPro3.filterCutoff = function(channel, control, value, status, grou
 }
 
 NumarkMixTrackPro3.toggleShiftKey = function(channel, control, value, status, group){
-	//if (!value) return; //don't return, want to toggle on note off
-
 	var deck = NumarkMixTrackPro3.groupToDeck(group);
 	NumarkMixTrackPro3.shiftKey[deck-1] = !NumarkMixTrackPro3.shiftKey[deck-1];
     print("shift toggled, now " + NumarkMixTrackPro3.shiftKey[deck - 1]);
@@ -807,25 +747,34 @@ NumarkMixTrackPro3.meters = function(value, group, control) {
     var leftPfl = engine.getValue("[Channel1]","pfl");
     var rightPfl = engine.getValue("[Channel2]","pfl");
 
-    if(group == "[Master]")
-        if(value) {
-            leftClip = true;
-            rightClip = true;
-        }
-    if(group == "[Channel1]" && leftPfl)
-        if(value) {
-            leftClip = true;
-        }
-    if(group == "[Channel2]" && rightPfl)
-        if(value) {
-            rightClip = true;
-        }
+    leftClip = engine.getValue("[Master]","PeakIndicator");
+    rightClip = leftClip; //bad logic, bud no per-stereo-channel peaks
+    if(leftPfl) {
+        print("ch1");
+        leftClip = engine.getValue("[Channel1]","PeakIndicator");
+    }
+    if(rightPfl) {
+        print("ch2");
+        rightClip = engine.getValue("[Channel2]","PeakIndicator");
+    }
 
-    var leftLevel = leftPfl ? engine.getValue("[Channel1]","VuMeter") : engine.getValue("[Master]","VuMeterL");
-    var rightLevel = rightPfl ? engine.getValue("[Channel2]","VuMeter") : engine.getValue("[Master]","VuMeterR");
+    var leftLevel = (leftPfl ? engine.getValue("[Channel1]","VuMeter") : engine.getValue("[Master]","VuMeterL"));
+    var rightLevel = (rightPfl ? engine.getValue("[Channel2]","VuMeter") : engine.getValue("[Master]","VuMeterR"));
 
-    NumarkMixTrackPro3.setLED(0, NumarkMixTrackPro3.leds[0]["meter1"],
-            leftLevel ? 81 : leftLevel * 80); //TODO: calibrate 81/80
-    NumarkMixTrackPro3.setLED(0, NumarkMixTrackPro3.leds[0]["meter2"],
-            rightLevel ? 81 : rightLevel * 80); //TODO: calibrate 81/80
+    NumarkMixTrackPro3.setLED(3, NumarkMixTrackPro3.leds[3]["meter1"],
+            Math.floor(leftClip ? 85 : leftLevel * 80));
+    NumarkMixTrackPro3.setLED(3, NumarkMixTrackPro3.leds[3]["meter2"],
+            Math.floor(rightClip ? 85 : rightLevel * 80));
+}
+
+NumarkMixTrackPro3.loopHalve = function(channel, control, value, status, group) {
+    if (!value) return;
+    var deck = NumarkMixTrackPro3.groupToDeck(group);
+
+    if (NumarkMixTrackPro3.shiftKey[deck - 1]) {
+        print("shifted, doubling");
+        engine.setValue(group, "loop_double", true);
+    } else {
+        engine.setValue(group, "loop_halve", true);
+    }
 }

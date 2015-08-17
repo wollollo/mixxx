@@ -3,9 +3,48 @@
     <info/>
     <controller id="MixTrack">
         <scriptfiles>
-            <file functionprefix="NumarkMixTrackPro3" filename="MixTrack_Pro_3_scripts.js"/>
+            <file functionprefix="NumarkMixTrackPro3" filename="Numark_MixTrack_Pro_3_scripts.js"/>
         </scriptfiles>
         <controls>
+            <control>
+                <group>[Channel1]</group>
+                <key>sync_enabled</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x02</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>crossfader</key>
+                <description>MIDI Learned from 98 messages.</description>
+                <status>0xB0</status>
+                <midino>0x07</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>sync_enabled</key>
+                <status>0x92</status>
+                <midino>0x02</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>play</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
             <control>
                 <group>[Channel2]</group>
                 <key>play</key>
@@ -17,166 +56,27 @@
                 </options>
             </control>
             <control>
-                <group>[Master]</group>
-                <key>headMix</key>
-                <description>MIDI Learned from 2222 messages.</description>
-                <status>0xB0</status>
-                <midino>0x09</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel1]</group>
-                <key>NumarkMixTrackPro3.wheelTouch</key>
+                <key>NumarkMixTrackPro3.loopHalve</key>
                 <status>0x91</status>
-                <midino>0x0C</midino>
+                <midino>0x16</midino>
                 <options>
                     <script-binding/>
                 </options>
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>NumarkMixTrackPro3.wheelTouch</key>
-                <status>0x91</status>
-                <midino>0x0C</midino>
+                <key>NumarkMixTrackPro3.loopHalve</key>
+                <status>0x92</status>
+                <midino>0x16</midino>
                 <options>
                     <script-binding/>
                 </options>
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>NumarkMixTrackPro3.toggleScratchMode</key>
-                <status>0x91</status>
-                <midino>0x06</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>NumarkMixTrackPro3.toggleScratchMode</key>
-                <status>0x91</status>
-                <midino>0x06</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>filterLow</key>
-                <description>MIDI Learned from 561 messages.</description>
+                <key>playposition</key>
                 <status>0xB1</status>
-                <midino>0x03</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>filterLow</key>
-                <description>MIDI Learned from 1104 messages.</description>
-                <status>0xB2</status>
-                <midino>0x03</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>hotcue_2_activate</key>
-                <description>MIDI Learned from 22 messages.</description>
-                <status>0x91</status>
-                <midino>0x1C</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>hotcue_2_activate</key>
-                <description>MIDI Learned from 28 messages.</description>
-                <status>0x92</status>
-                <midino>0x1C</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Master]</group>
-                <key>headGain</key>
-                <description>MIDI Learned from 1818 messages.</description>
-                <status>0xB0</status>
-                <midino>0x08</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>hotcue_1_clear</key>
-                <description>MIDI Learned from 24 messages.</description>
-                <status>0x92</status>
-                <midino>0x0B</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>rate_temp_up</key>
-                <description>MIDI Learned from 4 messages.</description>
-                <status>0x91</status>
-                <midino>0x05</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>rate_temp_up</key>
-                <description>MIDI Learned from 8 messages.</description>
-                <status>0x92</status>
-                <midino>0x05</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>filterMid</key>
-                <description>MIDI Learned from 380 messages.</description>
-                <status>0xB1</status>
-                <midino>0x02</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>filterMid</key>
-                <description>MIDI Learned from 920 messages.</description>
-                <status>0xB2</status>
-                <midino>0x02</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>hotcue_1_activate</key>
-                <description>MIDI Learned from 20 messages.</description>
-                <status>0x91</status>
-                <midino>0x1B</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>hotcue_1_activate</key>
-                <description>MIDI Learned from 20 messages.</description>
-                <status>0x92</status>
                 <midino>0x1B</midino>
                 <options>
                     <normal/>
@@ -184,21 +84,31 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>rate</key>
+                <key>volume</key>
+                <description>MIDI Learned from 1001 messages.</description>
                 <status>0xB1</status>
-                <midino>0x18</midino>
+                <midino>0x05</midino>
                 <options>
-                    <fourteen-bit-msb/>
+                    <normal/>
                 </options>
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>rate</key>
-                <description>MIDI Learned from 1312 messages.</description>
+                <key>playposition</key>
                 <status>0xB2</status>
-                <midino>0x18</midino>
+                <midino>0x1B</midino>
                 <options>
-                    <fourteen-bit-msb/>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>volume</key>
+                <description>MIDI Learned from 856 messages.</description>
+                <status>0xB2</status>
+                <midino>0x05</midino>
+                <options>
+                    <normal/>
                 </options>
             </control>
             <control>
@@ -223,52 +133,20 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>rate_temp_down</key>
-                <description>MIDI Learned from 2 messages.</description>
-                <status>0x91</status>
-                <midino>0x04</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>rate_temp_down</key>
-                <description>MIDI Learned from 6 messages.</description>
-                <status>0x92</status>
-                <midino>0x04</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>pfl</key>
-                <description>MIDI Learned from 4 messages.</description>
-                <status>0x90</status>
-                <midino>0x0F</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>filterHigh</key>
-                <description>MIDI Learned from 218 messages.</description>
+                <key>NumarkMixTrackPro3.filterCutoff</key>
                 <status>0xB1</status>
-                <midino>0x01</midino>
+                <midino>0x04</midino>
                 <options>
-                    <normal/>
+                    <script-binding/>
                 </options>
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>filterHigh</key>
-                <description>MIDI Learned from 788 messages.</description>
+                <key>NumarkMixTrackPro3.filterCutoff</key>
                 <status>0xB2</status>
-                <midino>0x01</midino>
+                <midino>0x04</midino>
                 <options>
-                    <normal/>
+                    <script-binding/>
                 </options>
             </control>
             <control>
@@ -293,77 +171,20 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>NumarkMixTrackPro3.jogWheel</key>
+                <key>filterLow</key>
+                <description>MIDI Learned from 561 messages.</description>
                 <status>0xB1</status>
-                <midino>0x11</midino>
+                <midino>0x03</midino>
                 <options>
-                    <script-binding/>
+                    <normal/>
                 </options>
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>NumarkMixTrackPro3.jogWheel</key>
-                <status>0xB1</status>
-                <midino>0x11</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>rate</key>
-                <description>MIDI Learned from 978 messages.</description>
-                <status>0xB1</status>
-                <midino>0x38</midino>
-                <options>
-                    <fourteen-bit-lsb/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>rate</key>
+                <key>filterLow</key>
+                <description>MIDI Learned from 1104 messages.</description>
                 <status>0xB2</status>
-                <midino>0x38</midino>
-                <options>
-                    <fourteen-bit-lsb/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>cue_default</key>
-                <description>MIDI Learned from 12 messages.</description>
-                <status>0x91</status>
                 <midino>0x03</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>cue_default</key>
-                <description>MIDI Learned from 10 messages.</description>
-                <status>0x92</status>
-                <midino>0x03</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>pfl</key>
-                <description>MIDI Learned from 2 messages.</description>
-                <status>0x90</status>
-                <midino>0x0E</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>volume</key>
-                <description>MIDI Learned from 1001 messages.</description>
-                <status>0xB1</status>
-                <midino>0x05</midino>
                 <options>
                     <normal/>
                 </options>
@@ -380,20 +201,309 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>volume</key>
-                <description>MIDI Learned from 856 messages.</description>
-                <status>0xB2</status>
-                <midino>0x05</midino>
+                <key>loop_in</key>
+                <description>MIDI Learned from 36 messages.</description>
+                <status>0x92</status>
+                <midino>0x13</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>rate</key>
+                <status>0xB1</status>
+                <midino>0x18</midino>
+                <options>
+                    <fourteen-bit-msb/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>filterMid</key>
+                <description>MIDI Learned from 380 messages.</description>
+                <status>0xB1</status>
+                <midino>0x02</midino>
                 <options>
                     <normal/>
                 </options>
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>loop_in</key>
-                <description>MIDI Learned from 36 messages.</description>
+                <key>rate</key>
+                <description>MIDI Learned from 1312 messages.</description>
+                <status>0xB2</status>
+                <midino>0x18</midino>
+                <options>
+                    <fourteen-bit-msb/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>filterMid</key>
+                <description>MIDI Learned from 920 messages.</description>
+                <status>0xB2</status>
+                <midino>0x02</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>NumarkMixTrackPro3.toggleDirectoryMode</key>
+                <status>0x90</status>
+                <midino>0x12</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Playlist]</group>
+                <key>NumarkMixTrackPro3.selectKnob</key>
+                <status>0xB0</status>
+                <midino>0x17</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>filterHigh</key>
+                <description>MIDI Learned from 218 messages.</description>
+                <status>0xB1</status>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>filterHigh</key>
+                <description>MIDI Learned from 788 messages.</description>
+                <status>0xB2</status>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>LoadSelectedTrack</key>
+                <description>MIDI Learned from 4 messages.</description>
+                <status>0x90</status>
+                <midino>0x11</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>LoadSelectedTrack</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x90</status>
+                <midino>0x10</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>pfl</key>
+                <description>MIDI Learned from 4 messages.</description>
+                <status>0x90</status>
+                <midino>0x0F</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>pfl</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x90</status>
+                <midino>0x0E</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler4]</group>
+                <key>play</key>
+                <description>MIDI Learned from 16 messages.</description>
+                <status>0x91</status>
+                <midino>0x23</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler4]</group>
+                <key>play</key>
+                <description>MIDI Learned from 16 messages.</description>
                 <status>0x92</status>
-                <midino>0x13</midino>
+                <midino>0x23</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>super1</key>
+                <status>0xB1</status>
+                <midino>0x12</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>super1</key>
+                <status>0xB2</status>
+                <midino>0x12</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler3]</group>
+                <key>play</key>
+                <description>MIDI Learned from 6 messages.</description>
+                <status>0x91</status>
+                <midino>0x22</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>NumarkMixTrackPro3.wheelTouch</key>
+                <status>0x91</status>
+                <midino>0x0C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler3]</group>
+                <key>play</key>
+                <description>MIDI Learned from 14 messages.</description>
+                <status>0x92</status>
+                <midino>0x22</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>NumarkMixTrackPro3.wheelTouch</key>
+                <status>0x92</status>
+                <midino>0x0C</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>NumarkMixTrackPro3.jogWheel</key>
+                <status>0xB1</status>
+                <midino>0x11</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>NumarkMixTrackPro3.jogWheel</key>
+                <status>0xB2</status>
+                <midino>0x11</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler2]</group>
+                <key>play</key>
+                <description>MIDI Learned from 4 messages.</description>
+                <status>0x91</status>
+                <midino>0x21</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>NumarkMixTrackPro3.toggleShiftKey</key>
+                <status>0x91</status>
+                <midino>0x0B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler2]</group>
+                <key>play</key>
+                <description>MIDI Learned from 12 messages.</description>
+                <status>0x92</status>
+                <midino>0x21</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>hotcue_1_clear</key>
+                <description>MIDI Learned from 24 messages.</description>
+                <status>0x92</status>
+                <midino>0x0B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>NumarkMixTrackPro3.toggleShiftKey</key>
+                <status>0x92</status>
+                <midino>0x0B</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler1]</group>
+                <key>play</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x20</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Sampler1]</group>
+                <key>play</key>
+                <description>MIDI Learned from 10 messages.</description>
+                <status>0x92</status>
+                <midino>0x20</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1_Effect2]</group>
+                <key>enabled</key>
+                <description>MIDI Learned from 12 messages.</description>
+                <status>0x91</status>
+                <midino>0x09</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2_Effect2]</group>
+                <key>enabled</key>
+                <description>MIDI Learned from 8 messages.</description>
+                <status>0x92</status>
+                <midino>0x09</midino>
                 <options>
                     <normal/>
                 </options>
@@ -409,6 +519,16 @@
                 </options>
             </control>
             <control>
+                <group>[EffectRack1_EffectUnit1_Effect1]</group>
+                <key>enabled</key>
+                <description>MIDI Learned from 10 messages.</description>
+                <status>0x91</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Channel2]</group>
                 <key>hotcue_4_activate</key>
                 <description>MIDI Learned from 18 messages.</description>
@@ -419,11 +539,11 @@
                 </options>
             </control>
             <control>
-                <group>[Master]</group>
-                <key>gain</key>
-                <description>MIDI Learned from 2230 messages.</description>
-                <status>0xB0</status>
-                <midino>0x0A</midino>
+                <group>[EffectRack1_EffectUnit2_Effect1]</group>
+                <key>enabled</key>
+                <description>MIDI Learned from 6 messages.</description>
+                <status>0x92</status>
+                <midino>0x08</midino>
                 <options>
                     <normal/>
                 </options>
@@ -440,10 +560,20 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>play</key>
+                <key>rate</key>
+                <description>MIDI Learned from 978 messages.</description>
+                <status>0xB1</status>
+                <midino>0x38</midino>
+                <options>
+                    <fourteen-bit-lsb/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit1]</group>
+                <key>enabled</key>
                 <description>MIDI Learned from 2 messages.</description>
                 <status>0x91</status>
-                <midino>0x01</midino>
+                <midino>0x07</midino>
                 <options>
                     <normal/>
                 </options>
@@ -458,15 +588,222 @@
                     <normal/>
                 </options>
             </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>rate</key>
+                <status>0xB2</status>
+                <midino>0x38</midino>
+                <options>
+                    <fourteen-bit-lsb/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2]</group>
+                <key>enabled</key>
+                <description>MIDI Learned from 4 messages.</description>
+                <status>0x92</status>
+                <midino>0x07</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>hotcue_2_activate</key>
+                <description>MIDI Learned from 22 messages.</description>
+                <status>0x91</status>
+                <midino>0x1C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>NumarkMixTrackPro3.toggleScratchMode</key>
+                <status>0x91</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>hotcue_2_activate</key>
+                <description>MIDI Learned from 28 messages.</description>
+                <status>0x92</status>
+                <midino>0x1C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>NumarkMixTrackPro3.toggleScratchMode</key>
+                <status>0x92</status>
+                <midino>0x06</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>hotcue_1_activate</key>
+                <description>MIDI Learned from 20 messages.</description>
+                <status>0x91</status>
+                <midino>0x1B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>rate_temp_up</key>
+                <description>MIDI Learned from 4 messages.</description>
+                <status>0x91</status>
+                <midino>0x05</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>hotcue_1_activate</key>
+                <description>MIDI Learned from 20 messages.</description>
+                <status>0x92</status>
+                <midino>0x1B</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>rate_temp_up</key>
+                <description>MIDI Learned from 8 messages.</description>
+                <status>0x92</status>
+                <midino>0x05</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>gain</key>
+                <description>MIDI Learned from 2230 messages.</description>
+                <status>0xB0</status>
+                <midino>0x0A</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>rate_temp_down</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x91</status>
+                <midino>0x04</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>headMix</key>
+                <description>MIDI Learned from 2222 messages.</description>
+                <status>0xB0</status>
+                <midino>0x09</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>rate_temp_down</key>
+                <description>MIDI Learned from 6 messages.</description>
+                <status>0x92</status>
+                <midino>0x04</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>cue_default</key>
+                <description>MIDI Learned from 12 messages.</description>
+                <status>0x91</status>
+                <midino>0x03</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Master]</group>
+                <key>headGain</key>
+                <description>MIDI Learned from 1818 messages.</description>
+                <status>0xB0</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>cue_default</key>
+                <description>MIDI Learned from 10 messages.</description>
+                <status>0x92</status>
+                <midino>0x03</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
         </controls>
         <outputs>
             <output>
+                <group>[Channel2]</group>
+                <key>pfl</key>
+                <status>0x90</status>
+                <midino>0x0F</midino>
+                <on>0x10</on>
+                <minimum>0.1</minimum>
+            </output>
+            <output>
                 <group>[Channel1]</group>
                 <key>pfl</key>
-                <status>0xB0</status>
+                <status>0x90</status>
                 <midino>0x0E</midino>
                 <on>0x10</on>
-                <minimum>0.5</minimum>
+                <minimum>0.1</minimum>
+            </output>
+            <output>
+                <group>[Channel1]</group>
+                <key>sync_enabled</key>
+                <status>0x91</status>
+                <midino>0x02</midino>
+                <on>0x10</on>
+                <minimum>0.1</minimum>
+            </output>
+            <output>
+                <group>[Channel2]</group>
+                <key>play</key>
+                <status>0x92</status>
+                <midino>0x01</midino>
+                <on>0x10</on>
+                <minimum>0.1</minimum>
+            </output>
+            <output>
+                <group>[Channel2]</group>
+                <key>sync_enabled</key>
+                <status>0x92</status>
+                <midino>0x02</midino>
+                <on>0x10</on>
+                <minimum>0.1</minimum>
+            </output>
+            <output>
+                <group>[Channel1]</group>
+                <key>play</key>
+                <status>0x91</status>
+                <midino>0x01</midino>
+                <on>0x10</on>
+                <minimum>0.1</minimum>
             </output>
         </outputs>
     </controller>
